@@ -1,0 +1,19 @@
+services:
+  parabank:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: parabank
+    restart: always
+    ports:
+      - "3000:8080"
+      - "61616:61616"
+      - "9001:9001"
+    environment:
+      - JAVA_OPTS=-Xmx512m
+    networks:
+      - parabank-network
+
+networks:
+  parabank-network:
+    driver: bridge

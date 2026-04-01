@@ -1,0 +1,9 @@
+node_modules/
+playwright/node_modules/
+playwright/test-results/
+playwright/playwright-report/
+playwright/allure-results/
+playwright/allure-report/
+.vscode/
+.DS_Store
+*.log

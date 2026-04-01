@@ -1,0 +1,28 @@
+package com.parasoft.parabank.dao.jdbc;
+
+import java.util.Objects;
+
+import org.springframework.lang.NonNull;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+
+import com.parasoft.parabank.domain.Customer;
+
+public class SecureJdbcCustomerDao extends JdbcCustomerDao {
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.parasoft.parabank.dao.CustomerDao#updateCustomer(com.parasoft. parabank.domain.Customer)
+     */
+    @Override
+    public void updateCustomer(@NonNull final Customer customer) {
+        final String SQL =
+            "UPDATE Customer SET first_name = :firstName, last_name = :lastName, address = :address.street, city = :address.city, state = :address.state, zip_code = :address.zipCode, phone_number = :phoneNumber, ssn = :ssn, username = :username, password = :password WHERE id = :id";
+
+        final BeanPropertySqlParameterSource source = new BeanPropertySqlParameterSource(customer);
+        Objects.requireNonNull(getNamedParameterJdbcTemplate()).update(SQL, source);
+        // getJdbcTemplate().update(SQL, new
+        // BeanPropertySqlParameterSource(customer));
+        log.info("Updated information for customer with id = " + customer.getId());
+    }
+}
