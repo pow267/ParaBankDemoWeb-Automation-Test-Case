@@ -7,3 +7,6 @@ playwright/allure-report/
 .vscode/
 .DS_Store
 *.log
+allure-results
+allure-report
+playwright/test-results

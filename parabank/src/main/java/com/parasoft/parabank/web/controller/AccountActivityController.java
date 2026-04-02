@@ -9,12 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 
 import jakarta.annotation.Resource;
 import jakarta.xml.bind.JAXBException;
-
-import com.parasoft.parabank.domain.validator.TransactionCriteriaValidator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,9 +55,6 @@ public class AccountActivityController extends AbstractBankController {
     @Resource(name = "adminManager")
     private AdminManager adminManager;
 
-    @Resource(name = "transactionCriteriaValidator")
-    private TransactionCriteriaValidator validator;
-
     @ModelAttribute("months")
     public List<String> getMonths(final Locale locale) {
         final List<String> months = new ArrayList<>(Arrays.asList(new DateFormatSymbols(locale).getMonths()));
@@ -101,7 +95,7 @@ public class AccountActivityController extends AbstractBankController {
             }
 
             if (accessMode != null && !accessMode.equalsIgnoreCase("jdbc")) {
-                account = Objects.requireNonNull(accessModeController).doGetAccount(Integer.parseInt(id));
+                account = accessModeController.doGetAccount(Integer.parseInt(id));
                 transactions = accessModeController.getTransactionsForAccount(account, criteria);
             }
 
@@ -109,12 +103,12 @@ public class AccountActivityController extends AbstractBankController {
                 // default JDBC
                 account = bankManager.getAccount(Integer.parseInt(id));
 
-                transactions = criteria == null ? bankManager.getTransactionsForAccount(Objects.requireNonNull(account))
+                transactions = criteria == null ? bankManager.getTransactionsForAccount(account)
                     : bankManager.getTransactionsForAccount(account.getId(), criteria);
             }
             log.info("got {} transactions for account id: {}", transactions == null ? 0 : transactions.size(), account);
 
-            model.put("accountId", Objects.requireNonNull(account).getId());
+            model.put("accountId", account.getId());
             modelAndView.addObject("model", model);
         } catch (final NumberFormatException e) {
             log.error("Invalid account id = " + id, e);
@@ -133,7 +127,7 @@ public class AccountActivityController extends AbstractBankController {
     /**
      * <DL>
      * <DT>Description:</DT>
-     * <DD>Handles the submission of the transaction search form.</DD>
+     * <DD>TODO add onSubmit description</DD>
      * <DT>Date:</DT>
      * <DD>Oct 15, 2015</DD>
      * </DL>
@@ -147,11 +141,11 @@ public class AccountActivityController extends AbstractBankController {
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView onSubmit(@ModelAttribute(Constants.TRANSACTIONCRITERIA) final TransactionCriteria criteria,
         final BindingResult errors, @RequestParam("id") final String id, final Model model) throws Exception {
-        Objects.requireNonNull(validator).validate(Objects.requireNonNull(criteria), Objects.requireNonNull(errors));
         if (errors.hasErrors()) {
-            return new ModelAndView(Objects.requireNonNull(getFormView()), errors.getModel());
+            return new ModelAndView(getFormView(), errors.getModel());
         }
-        final ModelAndView modelAndView = new ModelAndView(Objects.requireNonNull(getFormView()), model.asMap());
+        //TODO: consider adding validation to criteria
+        final ModelAndView modelAndView = new ModelAndView(getFormView(), model.asMap());
         //modelAndView.addAllObjects(model.asMap());
 
         //final TransactionCriteria criteria = super.getCommand(model);
@@ -172,18 +166,22 @@ public class AccountActivityController extends AbstractBankController {
 
     /** {@inheritDoc} */
     @Override
+    @Resource(name = "classTransactionCriteria")
+    //@Value("#{com.parasoft.parabank.util.Constants.CLASS_TRANSACTIONCRITERIA}")
     public void setCommandClass(final Class<?> aCommandClass) {
         super.setCommandClass(aCommandClass);
     }
 
     /** {@inheritDoc} */
     @Override
+    @Resource(name = Constants.TRANSACTIONCRITERIA)
     public void setCommandName(final String aCommandName) {
         super.setCommandName(aCommandName);
     }
 
     /** {@inheritDoc} */
     @Override
+    @Resource(name = Constants.ACTIVITY)
     public void setFormView(final String aFormView) {
         super.setFormView(aFormView);
     }
@@ -191,7 +189,7 @@ public class AccountActivityController extends AbstractBankController {
     /**
      * <DL>
      * <DT>Description:</DT>
-     * <DD>Displays the account activity form.</DD>
+     * <DD>TODO add showForm description</DD>
      * <DT>Date:</DT>
      * <DD>Oct 15, 2015</DD>
      * </DL>
@@ -208,5 +206,49 @@ public class AccountActivityController extends AbstractBankController {
 
         return loadTransactions(id, null, modelAndView);
     }
+
+    // @Override
+    // protected ModelAndView onSubmit(final HttpServletRequest request, final
+    // HttpServletResponse response,
+    // final Object command, final BindException errors, Model model) throws
+    // Exception {
+    // final ModelAndView modelAndView = super.showForm(request, response,
+    // errors);
+    //
+    // final TransactionCriteria criteria = (TransactionCriteria) command;
+    // criteria.setSearchType(SearchType.ACTIVITY);
+    //
+    // return loadTransactions(request, criteria, modelAndView);
+    // }
+    // @Override
+    // protected Map<String, Object> referenceData(HttpServletRequest request)
+    // throws Exception {
+    // Map<String, Object> model = new HashMap<String, Object>();
+    //
+    // List<String> months = new ArrayList<String>(Arrays.asList(new
+    // DateFormatSymbols(request.getLocale()).getMonths()));
+    // months.add(0, "All");
+    // months.remove(13);
+    //
+    // List<String> types = new ArrayList<String>();
+    // for (TransactionType type : TransactionType.values()) {
+    // types.add(type.toString());
+    // }
+    // types.add(0, "All");
+    //
+    // model.put("months", months);
+    // model.put("types", types);
+    //
+    // return model;
+    // }
+    // @Override
+    // protected ModelAndView showForm(final HttpServletRequest request, final
+    // HttpServletResponse response,
+    // final BindException errors) throws Exception {
+    // final ModelAndView modelAndView = super.showForm(request, response,
+    // errors);
+    //
+    // return loadTransactions(request, null, modelAndView);
+    // }
 
 }

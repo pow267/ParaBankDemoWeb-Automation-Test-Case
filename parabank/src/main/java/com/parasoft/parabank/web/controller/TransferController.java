@@ -2,7 +2,9 @@ package com.parasoft.parabank.web.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import jakarta.annotation.Resource;
@@ -10,7 +12,9 @@ import jakarta.xml.bind.JAXBException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +29,7 @@ import com.parasoft.parabank.util.AccessModeController;
 import com.parasoft.parabank.util.Constants;
 import com.parasoft.parabank.util.SessionParam;
 import com.parasoft.parabank.web.UserSession;
+import com.parasoft.parabank.web.form.TransferForm;
 
 /**
  * Controller for transferring funds between accounts
@@ -75,6 +80,37 @@ public class TransferController extends AbstractValidatingBankController {
     public ModelAndView getTransferForm(final Model model) throws Exception {
         final ModelAndView mav = super.prepForm(model);
         return mav;
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ModelAndView onSubmit(@Validated @ModelAttribute(Constants.TRANSFERFORM) final TransferForm transferForm,
+        final BindingResult errors) throws Exception {
+        if (errors.hasErrors()) {
+            return new ModelAndView(Objects.requireNonNull(getFormView()), errors.getModel());
+        }
+
+        String accessMode = null;
+
+        if (adminManager != null) {
+            accessMode = adminManager.getParameter("accessmode");
+        }
+
+        if (accessMode != null && !accessMode.equalsIgnoreCase("jdbc")) {
+            Objects.requireNonNull(accessModeController).doTransfer(transferForm.getFromAccountId(),
+                transferForm.getToAccountId(), transferForm.getAmount());
+        }
+
+        else {
+            bankManager.transfer(transferForm.getFromAccountId(), transferForm.getToAccountId(),
+                transferForm.getAmount());
+        }
+
+        final Map<String, Object> model = new HashMap<>();
+        model.put("amount", transferForm.getAmount());
+        model.put("fromAccountId", transferForm.getFromAccountId());
+        model.put("toAccountId", transferForm.getToAccountId());
+
+        return new ModelAndView("transferConfirm", "model", model);
     }
 
     @Override

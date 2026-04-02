@@ -1,6 +1,6 @@
 services:
   parabank:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     container_name: parabank

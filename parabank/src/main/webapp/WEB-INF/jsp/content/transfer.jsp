@@ -6,10 +6,10 @@
 		<h1 class="title">
 			<fmt:message key="transfer.funds" />
 		</h1>
-		<p id="amount.errors" class="error" style="display: none;">
+		<p id="amount.empty.error" class="error" style="display: none;">
 			<fmt:message key="error.amount.empty" />
 		</p>
-		<p id="amount.errors" class="error" style="display: none;">
+		<p id="amount.invalid.error" class="error" style="display: none;">
 			<fmt:message key="typeMismatch.java.math.BigDecimal" />
 		</p>
 		<form id="transferForm">
@@ -98,6 +98,11 @@
             var fromAccountId = $('#fromAccountId').val();
             var toAccountId = $('#toAccountId').val();
 
+            if (amount == "") {
+                $('#amount.empty.error').show();
+                return;
+            }
+
             var url = "services_proxy/bank/transfer?fromAccountId=" + fromAccountId + "&toAccountId=" + toAccountId + "&amount=" + amount;
 
             $.ajax({
@@ -119,7 +124,8 @@
         });
 
         function resetErrors() {
-            $('#amount.errors').hide();
+            $('#amount.empty.error').hide();
+            $('#amount.invalid.error').hide();
         }
 
         function showError(xhr) {

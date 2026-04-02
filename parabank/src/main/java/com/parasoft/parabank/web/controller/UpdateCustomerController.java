@@ -114,24 +114,28 @@ public class UpdateCustomerController extends AbstractValidatingBankController {
 
     /** {@inheritDoc} */
     @Override
+    @Resource(name = "classCustomerForm")
     public void setCommandClass(final Class<?> aCommandClass) {
         super.setCommandClass(aCommandClass);
     }
 
     /** {@inheritDoc} */
     @Override
+    @Resource(name = Constants.CUSTOMERFORMUPDATE)
     public void setCommandName(final String aCommandName) {
         super.setCommandName(aCommandName);
     }
 
     /** {@inheritDoc} */
     @Override
+    @Resource(name = Constants.UPDATEPROFILE)
     public void setFormView(final String aFormView) {
         super.setFormView(aFormView);
     }
 
     /** {@inheritDoc} */
     @Override
+    @Resource(name = "customerFormValidator")
     public void setValidator(final Validator aValidator) {
         validator = aValidator;
     }

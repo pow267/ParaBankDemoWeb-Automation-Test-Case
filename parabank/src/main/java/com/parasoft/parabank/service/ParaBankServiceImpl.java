@@ -444,6 +444,9 @@ public class ParaBankServiceImpl implements ParaBankService, AdminManagerAware, 
     @Override
     public String transfer(final int fromAccountId, final int toAccountId, final BigDecimal amount)
             throws ParaBankServiceException {
+        if (amount == null) {
+            throw new ParaBankServiceException("Amount is required");
+        }
         try {
             bankManager.transfer(fromAccountId, toAccountId, amount);
             return "Successfully transferred $" + amount + " from account #" + fromAccountId + " to account #"

@@ -3,7 +3,6 @@ package com.parasoft.parabank.web.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import jakarta.annotation.Resource;
 import jakarta.xml.bind.JAXBException;
@@ -47,8 +46,9 @@ public class RequestLoanController extends AbstractValidatingBankController {
     @ModelAttribute("accounts")
     public List<Integer> getAccountIds(@SessionParam(Constants.USERSESSION) final UserSession userSession)
             throws ParaBankServiceException, IOException, JAXBException {
+        //final UserSession userSession = (UserSession) WebUtils.getRequiredSessionAttribute(request, Constants.USERSESSION);
 
-        final Customer customer = Objects.requireNonNull(userSession).getCustomer();
+        final Customer customer = userSession.getCustomer();
 
         String accessMode = null;
         if (adminManager != null) {
@@ -57,9 +57,9 @@ public class RequestLoanController extends AbstractValidatingBankController {
 
         List<Account> accounts;
         if (accessMode != null && !accessMode.equalsIgnoreCase("jdbc")) {
-            accounts = Objects.requireNonNull(accessModeController).doGetAccounts(customer);
+            accounts = accessModeController.doGetAccounts(customer);
         } else {
-            accounts = bankManager.getAccountsForCustomer(Objects.requireNonNull(customer));
+            accounts = bankManager.getAccountsForCustomer(customer);
         }
 
         final List<Integer> accountIds = new ArrayList<>();
@@ -71,7 +71,7 @@ public class RequestLoanController extends AbstractValidatingBankController {
 
     @ModelAttribute("customerId")
     public int getCustomerId(@SessionParam(Constants.USERSESSION) final UserSession userSession) {
-        return Objects.requireNonNull(userSession).getCustomer().getId();
+        return userSession.getCustomer().getId();
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -86,11 +86,13 @@ public class RequestLoanController extends AbstractValidatingBankController {
                 throws Exception {
 
         if (errors.hasErrors()) {
-            return new ModelAndView(Objects.requireNonNull(getFormView()), errors.getModel());
+            return new ModelAndView(getFormView(), errors.getModel());
         }
         LoanResponse loanResponse = null;
+        //final RequestLoanForm requestLoanForm = (RequestLoanForm) command;
 
-        final Customer customer = Objects.requireNonNull(userSession).getCustomer();
+        //final UserSession userSession = (UserSession) WebUtils.getRequiredSessionAttribute(request, Constants.USERSESSION);
+        final Customer customer = userSession.getCustomer();
 
         String accessMode = null;
 
@@ -99,18 +101,17 @@ public class RequestLoanController extends AbstractValidatingBankController {
         }
 
         if (accessMode != null && !accessMode.equalsIgnoreCase("jdbc")) {
-            loanResponse = Objects.requireNonNull(accessModeController).doRequestLoan(customer.getId(),
-                Objects.requireNonNull(requestLoanForm).getAmount(),
+            loanResponse = accessModeController.doRequestLoan(customer.getId(), requestLoanForm.getAmount(),
                 requestLoanForm.getDownPayment(), requestLoanForm.getFromAccountId());
         }
 
         else {
-            loanResponse = bankManager.requestLoan(customer.getId(), Objects.requireNonNull(requestLoanForm).getAmount(),
+            loanResponse = bankManager.requestLoan(customer.getId(), requestLoanForm.getAmount(),
                 requestLoanForm.getDownPayment(), requestLoanForm.getFromAccountId());
 
         }
 
-        return new ModelAndView("requestloanConfirm", "loanResponse", Objects.requireNonNull(loanResponse));
+        return new ModelAndView("requestloanConfirm", "loanResponse", loanResponse);
     }
 
     @Override
@@ -124,25 +125,84 @@ public class RequestLoanController extends AbstractValidatingBankController {
 
     /** {@inheritDoc} */
     @Override
+    @Resource(name = "classRequestLoanForm")
     public void setCommandClass(final Class<?> aCommandClass) {
         super.setCommandClass(aCommandClass);
     }
 
     /** {@inheritDoc} */
     @Override
+    @Resource(name = Constants.REQUESTLOANFORM)
     public void setCommandName(final String aCommandName) {
         super.setCommandName(aCommandName);
     }
 
     /** {@inheritDoc} */
     @Override
+    @Resource(name = Constants.REQUESTLOAN)
     public void setFormView(final String aFormView) {
         super.setFormView(aFormView);
     }
 
     @Override
+    @Resource(name = "requestLoanFormValidator")
     public void setValidator(final Validator aValidator) {
         validator = aValidator;
     }
+
+    //    @Override
+    //    protected void onBindAndValidate(final HttpServletRequest request, final Object command, final BindException errors)
+    //            throws Exception {
+    //        ValidationUtils.rejectIfEmpty(errors, "amount", "error.loan.amount.empty");
+    //        ValidationUtils.rejectIfEmpty(errors, "downPayment", "error.down.payment.empty");
+    //        super.onBindAndValidate(request, command, errors);
+    //    }
+    //
+    //    @Override
+    //    protected ModelAndView onSubmit(final HttpServletRequest request, final HttpServletResponse response,
+    //        final Object command, final BindException errors) throws Exception {
+    //        LoanResponse loanResponse = null;
+    //        final RequestLoanForm requestLoanForm = (RequestLoanForm) command;
+    //
+    //        final UserSession userSession = (UserSession) WebUtils.getRequiredSessionAttribute(request, Constants.USERSESSION);
+    //        final Customer customer = userSession.getCustomer();
+    //
+    //        String accessMode = null;
+    //
+    //        if (adminManager != null) {
+    //            accessMode = adminManager.getParameter("accessmode");
+    //        }
+    //
+    //        if (accessMode != null && !accessMode.equalsIgnoreCase("jdbc")) {
+    //            loanResponse = accessModeController.doRequestLoan(customer.getId(), requestLoanForm.getAmount(),
+    //                requestLoanForm.getDownPayment(), requestLoanForm.getFromAccountId());
+    //        }
+    //
+    //        else {
+    //            loanResponse = bankManager.requestLoan(customer.getId(), requestLoanForm.getAmount(),
+    //                requestLoanForm.getDownPayment(), requestLoanForm.getFromAccountId());
+    //
+    //        }
+    //
+    //        return new ModelAndView("requestloanConfirm", "loanResponse", loanResponse);
+    //    }
+    //
+    //    @Override
+    //    protected Map<String, Object> referenceData(final HttpServletRequest request) throws Exception {
+    //        final UserSession userSession = (UserSession) WebUtils.getRequiredSessionAttribute(request, Constants.USERSESSION);
+    //
+    //        final Customer customer = userSession.getCustomer();
+    //        final List<Account> accounts = bankManager.getAccountsForCustomer(customer);
+    //
+    //        final List<Integer> accountIds = new ArrayList<Integer>();
+    //        for (final Account account : accounts) {
+    //            accountIds.add(account.getId());
+    //        }
+    //
+    //        final Map<String, Object> model = new HashMap<String, Object>();
+    //        model.put("accounts", accountIds);
+    //
+    //        return model;
+    //    }
 
 }

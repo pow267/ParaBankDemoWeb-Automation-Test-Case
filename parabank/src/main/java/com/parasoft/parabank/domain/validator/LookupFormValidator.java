@@ -1,9 +1,7 @@
 package com.parasoft.parabank.domain.validator;
 
-import java.util.Objects;
 import jakarta.annotation.Resource;
 
-import org.springframework.lang.NonNull;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -55,31 +53,26 @@ public class LookupFormValidator implements Validator {
     }
 
     @Override
-    public boolean supports(@NonNull final Class<?> clazz) {
+    public boolean supports(final Class<?> clazz) {
         return LookupForm.class.isAssignableFrom(clazz) || Customer.class.isAssignableFrom(clazz);
     }
 
     @Override
-    public void validate(@NonNull final Object obj, @NonNull final Errors errors) {
+    public void validate(final Object obj, final Errors errors) {
+
         if (obj instanceof Customer) {
-            final Validator localCustomerValidator = getCustomerValidator();
-            if (localCustomerValidator != null) {
-                localCustomerValidator.validate(obj, errors);
-            }
-        } else if (obj instanceof LookupForm) {
+            getCustomerValidator().validate(obj, errors);
+        } else {
             ValidationUtils.rejectIfEmpty(errors, "firstName", "error.first.name.required");
             ValidationUtils.rejectIfEmpty(errors, "lastName", "error.last.name.required");
             ValidationUtils.rejectIfEmpty(errors, "ssn", "error.ssn.required");
 
             final LookupForm lookup = (LookupForm) obj;
-            final Validator localAddressValidator = addressValidator;
-            if (localAddressValidator != null && lookup.getAddress() != null) {
-                try {
-                    errors.pushNestedPath("address");
-                    ValidationUtils.invokeValidator(localAddressValidator, Objects.requireNonNull(lookup.getAddress()), errors);
-                } finally {
-                    errors.popNestedPath();
-                }
+            try {
+                errors.pushNestedPath("address");
+                ValidationUtils.invokeValidator(addressValidator, lookup.getAddress(), errors);
+            } finally {
+                errors.popNestedPath();
             }
         }
     }

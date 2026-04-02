@@ -1,9 +1,7 @@
 package com.parasoft.parabank.domain.validator;
 
-import java.util.Objects;
 import jakarta.annotation.Resource;
 
-import org.springframework.lang.NonNull;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -22,12 +20,12 @@ public class CustomerValidator implements Validator {
     }
 
     @Override
-    public boolean supports(@NonNull final Class<?> clazz) {
+    public boolean supports(final Class<?> clazz) {
         return Customer.class.isAssignableFrom(clazz);
     }
 
     @Override
-    public void validate(@NonNull final Object obj, @NonNull final Errors errors) {
+    public void validate(final Object obj, final Errors errors) {
         ValidationUtils.rejectIfEmpty(errors, "firstName", "error.first.name.required");
         ValidationUtils.rejectIfEmpty(errors, "lastName", "error.last.name.required");
         ValidationUtils.rejectIfEmpty(errors, "ssn", "error.ssn.required");
@@ -35,14 +33,11 @@ public class CustomerValidator implements Validator {
         ValidationUtils.rejectIfEmpty(errors, "password", "error.password.required");
 
         final Customer customer = (Customer) obj;
-        final Validator localAddressValidator = addressValidator;
-        if (customer != null && localAddressValidator != null && customer.getAddress() != null) {
-            try {
-                errors.pushNestedPath("address");
-                ValidationUtils.invokeValidator(localAddressValidator, Objects.requireNonNull(customer.getAddress()), errors);
-            } finally {
-                errors.popNestedPath();
-            }
+        try {
+            errors.pushNestedPath("address");
+            ValidationUtils.invokeValidator(addressValidator, customer.getAddress(), errors);
+        } finally {
+            errors.popNestedPath();
         }
     }
 }

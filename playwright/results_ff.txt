@@ -1,0 +1,230 @@
+
+Running 52 tests using 1 worker
+
+  ✓   1 [firefox] › tests\account\opennewaccount.spec.js:9:9 › Kiểm tra chức năng Open New Account › NewAccount-TC1: Thực hiện mở mới tài khoản type CHECKING (1.8s)
+  ✓   2 [firefox] › tests\account\opennewaccount.spec.js:9:9 › Kiểm tra chức năng Open New Account › NewAccount-TC1: Thực hiện mở mới tài khoản type SAVINGS (792ms)
+  ✓   3 [firefox] › tests\account\transferfunds.spec.js:23:5 › Kiểm tra chức năng Transfer Funds › TransferFunds-TC1: Thực hiện chuyển tiền từ tài khoản này sang tài khoản mới được tạo (879ms)
+  ✘   4 [firefox] › tests\account\transferfunds.spec.js:29:5 › Kiểm tra chức năng Transfer Funds › TransferFunds-TC2: Thực hiện chuyển tiền số âm (5.8s)
+  ✘   5 [firefox] › tests\account\transferfunds.spec.js:35:5 › Kiểm tra chức năng Transfer Funds › TransferFunds-TC3: Thực hiện chuyển tiền số 0 (1.8s)
+  ✓   6 [firefox] › tests\account\transferfunds.spec.js:41:5 › Kiểm tra chức năng Transfer Funds › TransferFunds-TC4: Thực hiện chuyển tiền số cực lớn (1.7s)
+  ✓   7 [firefox] › tests\account\transferfunds.spec.js:47:5 › Kiểm tra chức năng Transfer Funds › TransferFunds-TC5: Bỏ trống số tiền cần chuyển (868ms)
+  ✓   8 [firefox] › tests\API\accountdetails-api.spec.js:24:5 › Kiểm tra Account Detail API › AccountDetail-TC1: thực hiện xem Detail của Account (90ms)
+  ✓   9 [firefox] › tests\API\billpay-api.spec.js:31:5 › Kiểm tra Billpay API › Billpay-TC1: User tạo billpay thành công (99ms)
+  ✘  10 [firefox] › tests\API\billpay-api.spec.js:47:5 › Kiểm tra Billpay API › Billpay-TC2: User tạo billpay với số âm (92ms)
+  ✘  11 [firefox] › tests\API\billpay-api.spec.js:54:9 › Kiểm tra Billpay API › Billpay-TC3: User tạo billpay với Tên người thụ hưởng trống (133ms)
+  ✘  12 [firefox] › tests\API\billpay-api.spec.js:54:9 › Kiểm tra Billpay API › Billpay-TC3: User tạo billpay với Địa chỉ trống (152ms)
+  ✘  13 [firefox] › tests\API\billpay-api.spec.js:54:9 › Kiểm tra Billpay API › Billpay-TC3: User tạo billpay với Số điện thoại để trống (123ms)
+  ✘  14 [firefox] › tests\API\billpay-api.spec.js:54:9 › Kiểm tra Billpay API › Billpay-TC3: User tạo billpay với Số tài khoản thụ hưởng để trống (129ms)
+  ✓  15 [firefox] › tests\API\createaccount-api.spec.js:26:9 › Kiểm tra Create Account API › CreateAcc-TC01: Tạo tài khoảng theo CHECKING  (131ms)
+  ✓  16 [firefox] › tests\API\createaccount-api.spec.js:26:9 › Kiểm tra Create Account API › CreateAcc-TC01: Tạo tài khoảng theo SAVINGS  (111ms)
+  ✓  17 [firefox] › tests\API\customerid-api.spec.js:21:5 › Kiểm tra API CustomerID › CustomerID-TC1: API trả về 200 cho ID hợp lệ (77ms)
+  ✓  18 [firefox] › tests\API\customerid-api.spec.js:28:5 › Kiểm tra API CustomerID › CustomerID-TC2: API trả về 400 cho ID không tồn tại (93ms)
+  ✓  19 [firefox] › tests\API\deposit-api.spec.js:27:5 › Kiểm tra Deposit API › Deposit-TC01: nạp tiền vào tài khoản thành công (112ms)
+  ✓  20 [firefox] › tests\API\login-api.spec.js:18:5 › Kiểm tra Login API › LoginAPI-TC01: Đăng nhập thành công (74ms)
+  ✓  21 [firefox] › tests\API\login-api.spec.js:24:9 › Kiểm tra Login API › LoginAPI-TC02: Đăng nhập với trường hợp Sai tên đăng nhập (71ms)
+  ✓  22 [firefox] › tests\API\login-api.spec.js:24:9 › Kiểm tra Login API › LoginAPI-TC02: Đăng nhập với trường hợp Sai mật khẩu (80ms)
+  ✓  23 [firefox] › tests\API\login-api.spec.js:24:9 › Kiểm tra Login API › LoginAPI-TC02: Đăng nhập với trường hợp Sai tên đăng nhập và mật khẩu (91ms)
+  ✓  24 [firefox] › tests\API\login-api.spec.js:31:9 › Kiểm tra Login API › LoginAPI-TC03: Đăng nhập với trường hợp tên đăng nhập bỏ trống (72ms)
+  ✓  25 [firefox] › tests\API\login-api.spec.js:31:9 › Kiểm tra Login API › LoginAPI-TC03: Đăng nhập với trường hợp mật khẩu bỏ trống (70ms)
+  ✓  26 [firefox] › tests\API\login-api.spec.js:31:9 › Kiểm tra Login API › LoginAPI-TC03: Đăng nhập với trường hợp Bỏ trống tên đăng nhập và mật khẩu (62ms)
+  ✓  27 [firefox] › tests\API\requestloan-api.spec.js:29:5 › Kiểm tra Request Loan API › RequestLoan-TC1: Request Loan thành công (206ms)
+  ✓  28 [firefox] › tests\API\requestloan-api.spec.js:37:5 › Kiểm tra Request Loan API › RequestLoan-TC2: Request Loan bị từ chối do số tiền quá lớn (113ms)
+  ✓  29 [firefox] › tests\API\transactions-api.spec.js:28:5 › Kiểm tra Transaction API › Transaction-TC01: Lấy lịch sử giao dịch từ tài khoản (98ms)
+  ✓  30 [firefox] › tests\API\transactions-api.spec.js:34:5 › Kiểm tra Transaction API › Transaction-TC02: Lấy lịch sử giao dịch từ tài khoản với ngày bắt đầu và kết thúc (82ms)
+  ✓  31 [firefox] › tests\API\transfer-api.spec.js:35:5 › Kiểm tra API transfer › Transfer-TC01: Chuyển tiền giữa hai tài khoản thành công (113ms)
+  ✘  32 [firefox] › tests\API\transfer-api.spec.js:58:5 › Kiểm tra API transfer › Transfer-TC02: Chuyển tiền số âm giữa hai tài khoản  (103ms)
+  ✓  33 [firefox] › tests\API\transfer-api.spec.js:64:5 › Kiểm tra API transfer › Transfer-TC03: Chuyển tiền số cực lớn giữa hai tài khoản  (117ms)
+  ✓  34 [firefox] › tests\auth\login.spec.js:7:5 › Kiểm tra luồng Login và Logout › Login-TC01: User thực hiện login rồi logout (1.7s)
+  ✓  35 [firefox] › tests\auth\login.spec.js:13:9 › Kiểm tra luồng Login và Logout › Login-TC02: Thực hiện login với case invalid: Username bỏ trống (440ms)
+  ✓  36 [firefox] › tests\auth\login.spec.js:13:9 › Kiểm tra luồng Login và Logout › Login-TC02: Thực hiện login với case invalid: Password bỏ trống (514ms)
+  ✓  37 [firefox] › tests\auth\login.spec.js:13:9 › Kiểm tra luồng Login và Logout › Login-TC02: Thực hiện login với case invalid: Username và Password bỏ trống (545ms)
+  ✓  38 [firefox] › tests\auth\login.spec.js:20:9 › Kiểm tra luồng Login và Logout › Login-TC03: Thực hiện login với case Negative: Username sai (502ms)
+  ✓  39 [firefox] › tests\auth\login.spec.js:20:9 › Kiểm tra luồng Login và Logout › Login-TC03: Thực hiện login với case Negative: Password sai (537ms)
+  ✓  40 [firefox] › tests\auth\login.spec.js:20:9 › Kiểm tra luồng Login và Logout › Login-TC03: Thực hiện login với case Negative: Username và Password đều sai (506ms)
+  ✓  41 [firefox] › tests\auth\register.spec.js:25:5 › Kiểm tra chức năng Register › Register-TC01: Đăng ký tài khoản thành công (828ms)
+  ✓  42 [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: First Name bỏ trống (817ms)
+  ✓  43 [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Last Name bỏ trống (809ms)
+  ✓  44 [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Address bỏ trống (711ms)
+  ✓  45 [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: City bỏ trống (763ms)
+  ✘  46 [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: State bỏ trống (718ms)
+  ✓  47 [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Zip Code bỏ trống (1.8s)
+  ✓  48 [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: SSN bỏ trống (840ms)
+  ✓  49 [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Username bỏ trống (699ms)
+  ✓  50 [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Password bỏ trống (691ms)
+  ✓  51 [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Confirm Password bỏ trống (711ms)
+  ✓  52 [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Bỏ trống tất cả (704ms)
+
+
+  1) [firefox] › tests\account\transferfunds.spec.js:29:5 › Kiểm tra chức năng Transfer Funds › TransferFunds-TC2: Thực hiện chuyển tiền số âm 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: 'Error!' })
+    Expected substring: [32m"Error!"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Error!' })[22m
+
+
+      30 |
+      31 |         await transferFundsPage.transferFunds(-1000, fromAccountId(), toAccountId());
+    > 32 |         await expect(transferFundsPage.errorMessage).toContainText('Error!');
+         |                                                      ^
+      33 |     });
+      34 |
+      35 |     test('TransferFunds-TC3: Thực hiện chuyển tiền số 0', async () => {
+        at C:\Users\Asus\Hutech\.LuyenTap\ParaBank-Automation-Test-Case\playwright\tests\account\transferfunds.spec.js:32:54
+
+    Error Context: test-results\account-transferfunds-Kiểm-6f403-Thực-hiện-chuyển-tiền-số-âm-firefox\error-context.md
+
+  2) [firefox] › tests\account\transferfunds.spec.js:35:5 › Kiểm tra chức năng Transfer Funds › TransferFunds-TC3: Thực hiện chuyển tiền số 0 
+
+    ReferenceError: newAccountID is not defined
+
+      35 |     test('TransferFunds-TC3: Thực hiện chuyển tiền số 0', async () => {
+      36 |
+    > 37 |         await transferFundsPage.transferFunds(0, fromAccountId(), newAccountID);
+         |                                                                   ^
+      38 |         await expect(transferFundsPage.errorMessage).toContainText('Error!');
+      39 |     });
+      40 |
+        at C:\Users\Asus\Hutech\.LuyenTap\ParaBank-Automation-Test-Case\playwright\tests\account\transferfunds.spec.js:37:67
+
+    Error Context: test-results\account-transferfunds-Kiểm-bea7e--Thực-hiện-chuyển-tiền-số-0-firefox\error-context.md
+
+  3) [firefox] › tests\API\billpay-api.spec.js:47:5 › Kiểm tra Billpay API › Billpay-TC2: User tạo billpay với số âm 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m400[39m
+    Received: [31m200[39m
+
+      48 |
+      49 |         const billpayRes = await billpayAPI.pay(fromAccounts, -1000, payeeData());
+    > 50 |         expect(billpayRes.status()).toBe(400);
+         |                                     ^
+      51 |     });
+      52 |
+      53 |     for (let data of payeeInvalidData()) {
+        at C:\Users\Asus\Hutech\.LuyenTap\ParaBank-Automation-Test-Case\playwright\tests\API\billpay-api.spec.js:50:37
+
+  4) [firefox] › tests\API\billpay-api.spec.js:54:9 › Kiểm tra Billpay API › Billpay-TC3: User tạo billpay với Tên người thụ hưởng trống 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m400[39m
+    Received: [31m200[39m
+
+      55 |             const fromAccounts = await getAccountID(loginAPI, customerAPI, 1);
+      56 |             const billpayRes = await billpayAPI.pay(fromAccounts, -1000, data.data);
+    > 57 |             expect(billpayRes.status()).toBe(400);
+         |                                         ^
+      58 |         });
+      59 |     }
+      60 | });
+        at C:\Users\Asus\Hutech\.LuyenTap\ParaBank-Automation-Test-Case\playwright\tests\API\billpay-api.spec.js:57:41
+
+  5) [firefox] › tests\API\billpay-api.spec.js:54:9 › Kiểm tra Billpay API › Billpay-TC3: User tạo billpay với Địa chỉ trống 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m400[39m
+    Received: [31m200[39m
+
+      55 |             const fromAccounts = await getAccountID(loginAPI, customerAPI, 1);
+      56 |             const billpayRes = await billpayAPI.pay(fromAccounts, -1000, data.data);
+    > 57 |             expect(billpayRes.status()).toBe(400);
+         |                                         ^
+      58 |         });
+      59 |     }
+      60 | });
+        at C:\Users\Asus\Hutech\.LuyenTap\ParaBank-Automation-Test-Case\playwright\tests\API\billpay-api.spec.js:57:41
+
+  6) [firefox] › tests\API\billpay-api.spec.js:54:9 › Kiểm tra Billpay API › Billpay-TC3: User tạo billpay với Số điện thoại để trống 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m400[39m
+    Received: [31m200[39m
+
+      55 |             const fromAccounts = await getAccountID(loginAPI, customerAPI, 1);
+      56 |             const billpayRes = await billpayAPI.pay(fromAccounts, -1000, data.data);
+    > 57 |             expect(billpayRes.status()).toBe(400);
+         |                                         ^
+      58 |         });
+      59 |     }
+      60 | });
+        at C:\Users\Asus\Hutech\.LuyenTap\ParaBank-Automation-Test-Case\playwright\tests\API\billpay-api.spec.js:57:41
+
+  7) [firefox] › tests\API\billpay-api.spec.js:54:9 › Kiểm tra Billpay API › Billpay-TC3: User tạo billpay với Số tài khoản thụ hưởng để trống 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m400[39m
+    Received: [31m200[39m
+
+      55 |             const fromAccounts = await getAccountID(loginAPI, customerAPI, 1);
+      56 |             const billpayRes = await billpayAPI.pay(fromAccounts, -1000, data.data);
+    > 57 |             expect(billpayRes.status()).toBe(400);
+         |                                         ^
+      58 |         });
+      59 |     }
+      60 | });
+        at C:\Users\Asus\Hutech\.LuyenTap\ParaBank-Automation-Test-Case\playwright\tests\API\billpay-api.spec.js:57:41
+
+  8) [firefox] › tests\API\transfer-api.spec.js:58:5 › Kiểm tra API transfer › Transfer-TC02: Chuyển tiền số âm giữa hai tài khoản  
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m400[39m
+    Received: [31m200[39m
+
+      59 |
+      60 |         const tranferRes = await transferAPI.transfer(fromAccounts, toAccounts, -1000);
+    > 61 |         expect(tranferRes.status()).toBe(400);
+         |                                     ^
+      62 |     });
+      63 |
+      64 |     test('Transfer-TC03: Chuyển tiền số cực lớn giữa hai tài khoản ', async () => {
+        at C:\Users\Asus\Hutech\.LuyenTap\ParaBank-Automation-Test-Case\playwright\tests\API\transfer-api.spec.js:61:37
+
+  9) [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: State bỏ trống 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('.error')
+    Expected: visible
+    Error: strict mode violation: locator('.error') resolved to 2 elements:
+        1) <span class="error" id="customer.firstName.errors">First name is required.</span> aka getByText('First name is required.')
+        2) <span class="error" id="customer.address.state.errors">State is required.</span> aka getByText('State is required.')
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('.error')[22m
+
+
+      34 |                 await expect(registerPage.errorMessage).toContainText(data.allErrors);
+      35 |             } else {
+    > 36 |                 await expect(registerPage.errorMessage).toBeVisible();
+         |                                                         ^
+      37 |             }
+      38 |         });
+      39 |     }
+        at C:\Users\Asus\Hutech\.LuyenTap\ParaBank-Automation-Test-Case\playwright\tests\auth\register.spec.js:36:57
+
+    Error Context: test-results\auth-register-Kiểm-tra-chứ-9fced-case-Invalid-State-bỏ-trống-firefox\error-context.md
+
+  9 failed
+    [firefox] › tests\account\transferfunds.spec.js:29:5 › Kiểm tra chức năng Transfer Funds › TransferFunds-TC2: Thực hiện chuyển tiền số âm 
+    [firefox] › tests\account\transferfunds.spec.js:35:5 › Kiểm tra chức năng Transfer Funds › TransferFunds-TC3: Thực hiện chuyển tiền số 0 
+    [firefox] › tests\API\billpay-api.spec.js:47:5 › Kiểm tra Billpay API › Billpay-TC2: User tạo billpay với số âm 
+    [firefox] › tests\API\billpay-api.spec.js:54:9 › Kiểm tra Billpay API › Billpay-TC3: User tạo billpay với Tên người thụ hưởng trống 
+    [firefox] › tests\API\billpay-api.spec.js:54:9 › Kiểm tra Billpay API › Billpay-TC3: User tạo billpay với Địa chỉ trống 
+    [firefox] › tests\API\billpay-api.spec.js:54:9 › Kiểm tra Billpay API › Billpay-TC3: User tạo billpay với Số điện thoại để trống 
+    [firefox] › tests\API\billpay-api.spec.js:54:9 › Kiểm tra Billpay API › Billpay-TC3: User tạo billpay với Số tài khoản thụ hưởng để trống 
+    [firefox] › tests\API\transfer-api.spec.js:58:5 › Kiểm tra API transfer › Transfer-TC02: Chuyển tiền số âm giữa hai tài khoản  
+    [firefox] › tests\auth\register.spec.js:31:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: State bỏ trống 
+  43 passed (46.6s)
