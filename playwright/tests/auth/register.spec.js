@@ -31,9 +31,9 @@ test.describe('Kiểm tra chức năng Register', () => {
         test(`Register-TC02: Đăng ký tài khoản với case Invalid: ${data.case}`, async () => {
             await registerPage.register(data);
             if (data.allErrors) {
-                await expect(registerPage.errorMessage.first()).toContainText(data.allErrors);
+                await expect(registerPage.errorMessage).toContainText(data.allErrors);
             } else {
-                await expect(registerPage.errorMessage.first()).toBeVisible();
+                await expect(registerPage.errorMessage).toBeVisible();
             }
         });
     }

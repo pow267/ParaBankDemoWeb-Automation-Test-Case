@@ -2,7 +2,14 @@
   "name": "bankingproject-automation",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "type": "module",
   "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
     "clean": "if exist allure-results (rd /s /q allure-results) && if exist allure-report (rd /s /q allure-report)",
     "test": "npx playwright test --reporter=list,allure-playwright",
@@ -12,17 +19,13 @@
     "report": "npx allure serve allure-results",
     "full-test": "npm run clean && npm run test & npm run report"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
+  "dependencies": {
+    "fast-xml-parser": "^5.5.9"
+  },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.5.0",
     "allure-commandline": "^2.38.1",
     "allure-playwright": "^3.6.0"
-  },
-  "dependencies": {
-    "fast-xml-parser": "^5.5.9"
   }
 }
