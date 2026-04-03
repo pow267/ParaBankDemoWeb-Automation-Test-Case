@@ -46,6 +46,9 @@ export class RegisterPage {
 
     async register(data) {
         await this.fillRegisterForm(data);
-        await this.registerButton.click()
+        await Promise.all([
+            this.page.waitForLoadState('load'),
+            this.registerButton.click()
+        ]);
     }
 }
