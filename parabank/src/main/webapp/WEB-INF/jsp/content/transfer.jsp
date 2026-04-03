@@ -6,10 +6,10 @@
 		<h1 class="title">
 			<fmt:message key="transfer.funds" />
 		</h1>
-		<p id="amount.empty.error" class="error" style="display: none;">
+		<p id="amount-empty-error" class="error" style="display: none;">
 			<fmt:message key="error.amount.empty" />
 		</p>
-		<p id="amount.invalid.error" class="error" style="display: none;">
+		<p id="amount-invalid-error" class="error" style="display: none;">
 			<fmt:message key="typeMismatch.java.math.BigDecimal" />
 		</p>
 		<form id="transferForm">
@@ -99,7 +99,12 @@
             var toAccountId = $('#toAccountId').val();
 
             if (amount == "") {
-                $('#amount.empty.error').show();
+                $('#amount-empty-error').show();
+                return;
+            }
+
+            if (isNaN(parseFloat(amount))) {
+                $('#amount-invalid-error').show();
                 return;
             }
 
@@ -124,8 +129,8 @@
         });
 
         function resetErrors() {
-            $('#amount.empty.error').hide();
-            $('#amount.invalid.error').hide();
+            $('#amount-empty-error').hide();
+            $('#amount-invalid-error').hide();
         }
 
         function showError(xhr) {

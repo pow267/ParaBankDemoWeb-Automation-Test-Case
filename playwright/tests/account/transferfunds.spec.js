@@ -40,13 +40,13 @@ test.describe('Kiểm tra chức năng Transfer Funds', () => {
 
     test('TransferFunds-TC4: Thực hiện chuyển tiền số cực lớn', async () => {
 
-        await transferFundsPage.transferFunds(99999999999999999, fromAccountId(), toAccountId());
-        await expect(transferFundsPage.errorMessage).toContainText('Error!');
+        await transferFundsPage.transferFunds(9999999999999999999, fromAccountId(), toAccountId());
+        await expect(transferFundsPage.errorMessage).toBeVisible();
     });
 
-    test('TransferFunds-TC5: Bỏ trống số tiền cần chuyển', async () => {
+    test('TransferFunds-TC5: Bỏ trống số tiền cần chuyển', async ({ page }) => {
 
         await transferFundsPage.transferFunds('', fromAccountId(), toAccountId());
-        await expect(transferFundsPage.errorMessage).toContainText('Error!');
+        await expect(page.locator('#amount-empty-error')).toHaveText('The amount cannot be empty.');
     });
 });

@@ -8,7 +8,7 @@ export class TransferFundsPage {
         this.toAccountID = this.page.locator('#toAccountId');
         this.transferButton = this.page.getByRole('button', { name: 'Transfer' });
         this.successMessage = this.page.getByRole('heading', { name: 'Transfer Complete!' });
-        this.errorMessage = this.page.getByRole('heading', { name: 'Error!' });
+        this.errorMessage = this.page.getByRole('heading', { name: 'Error!' })
     }
 
 
