@@ -15,8 +15,8 @@ export class RegisterPage {
         this.usernameInput = this.page.locator('[id="customer.username"]');
         this.passwordInput = this.page.locator('[id="customer.password"]')
         this.confirmInput = this.page.locator('#repeatedPassword');
-        this.errorMessage = this.page.locator('.error');
-        this.successMessage = this.page.getByRole('heading', { name: 'Welcome' });
+        this.errorMessage = this.page.locator('span.error');
+        this.successMessage = this.page.getByRole('heading', { name: /Welcome/i });
     }
 
     async goto() {

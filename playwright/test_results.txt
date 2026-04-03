@@ -1,0 +1,110 @@
+
+Running 24 tests using 1 worker
+
+  ✘   1 [chromium] › tests\auth\register.spec.js:25:5 › Kiểm tra chức năng Register › Register-TC01: Đăng ký tài khoản thành công (5.8s)
+  ✓   2 [chromium] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: First Name bỏ trống (554ms)
+  ✓   3 [chromium] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Last Name bỏ trống (425ms)
+  ✓   4 [chromium] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Address bỏ trống (390ms)
+  ✓   5 [chromium] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: City bỏ trống (429ms)
+  ✓   6 [chromium] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: State bỏ trống (421ms)
+  ✓   7 [chromium] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Zip Code bỏ trống (470ms)
+  ✓   8 [chromium] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: SSN bỏ trống (420ms)
+  ✓   9 [chromium] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Username bỏ trống (458ms)
+  ✓  10 [chromium] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Password bỏ trống (452ms)
+  ✓  11 [chromium] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Confirm Password bỏ trống (390ms)
+  ✓  12 [chromium] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Bỏ trống tất cả (441ms)
+  ✘  13 [firefox] › tests\auth\register.spec.js:25:5 › Kiểm tra chức năng Register › Register-TC01: Đăng ký tài khoản thành công (6.6s)
+  ✓  14 [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: First Name bỏ trống (1.9s)
+  ✓  15 [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Last Name bỏ trống (894ms)
+  ✓  16 [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Address bỏ trống (716ms)
+  ✓  17 [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: City bỏ trống (788ms)
+  ✓  18 [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: State bỏ trống (836ms)
+  ✓  19 [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Zip Code bỏ trống (861ms)
+  ✓  20 [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: SSN bỏ trống (867ms)
+  ✘  21 [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Username bỏ trống (952ms)
+  ✓  22 [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Password bỏ trống (1.9s)
+  ✓  23 [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Confirm Password bỏ trống (881ms)
+  ✓  24 [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Bỏ trống tất cả (909ms)
+
+
+  1) [chromium] › tests\auth\register.spec.js:25:5 › Kiểm tra chức năng Register › Register-TC01: Đăng ký tài khoản thành công 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: 'Welcome' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Welcome' })[22m
+
+
+      26 |         const data = RegisterData();
+      27 |         await registerPage.register(data);
+    > 28 |         await expect(registerPage.successMessage).toBeVisible();
+         |                                                   ^
+      29 |     });
+      30 |
+      31 |     for (let data of RegisterInvalidData()) {
+        at C:\Users\Asus\Hutech\.LuyenTap\lab6\ParaBankDemoWeb-Automation-Test-Case\playwright\tests\auth\register.spec.js:28:51
+
+    Error Context: test-results\auth-register-Kiểm-tra-chứ-d5ac0-ăng-ký-tài-khoản-thành-công-chromium\error-context.md
+
+  2) [firefox] › tests\auth\register.spec.js:25:5 › Kiểm tra chức năng Register › Register-TC01: Đăng ký tài khoản thành công 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: 'Welcome' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Welcome' })[22m
+
+
+      26 |         const data = RegisterData();
+      27 |         await registerPage.register(data);
+    > 28 |         await expect(registerPage.successMessage).toBeVisible();
+         |                                                   ^
+      29 |     });
+      30 |
+      31 |     for (let data of RegisterInvalidData()) {
+        at C:\Users\Asus\Hutech\.LuyenTap\lab6\ParaBankDemoWeb-Automation-Test-Case\playwright\tests\auth\register.spec.js:28:51
+
+    Error Context: test-results\auth-register-Kiểm-tra-chứ-d5ac0-ăng-ký-tài-khoản-thành-công-firefox\error-context.md
+
+  3) [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Username bỏ trống 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('.error')
+    Expected: visible
+    Error: strict mode violation: locator('.error') resolved to 2 elements:
+        1) <span class="error" id="customer.firstName.errors">First name is required.</span> aka getByText('First name is required.')
+        2) <span class="error" id="customer.username.errors">Username is required.</span> aka getByText('Username is required.')
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('.error')[22m
+
+
+      35 |                 await expect(registerPage.errorMessage).toContainText(data.allErrors);
+      36 |             } else {
+    > 37 |                 await expect(registerPage.errorMessage).toBeVisible();
+         |                                                         ^
+      38 |             }
+      39 |         });
+      40 |     }
+        at C:\Users\Asus\Hutech\.LuyenTap\lab6\ParaBankDemoWeb-Automation-Test-Case\playwright\tests\auth\register.spec.js:37:57
+
+    Error Context: test-results\auth-register-Kiểm-tra-chứ-bb842-e-Invalid-Username-bỏ-trống-firefox\error-context.md
+
+  3 failed
+    [chromium] › tests\auth\register.spec.js:25:5 › Kiểm tra chức năng Register › Register-TC01: Đăng ký tài khoản thành công 
+    [firefox] › tests\auth\register.spec.js:25:5 › Kiểm tra chức năng Register › Register-TC01: Đăng ký tài khoản thành công 
+    [firefox] › tests\auth\register.spec.js:32:9 › Kiểm tra chức năng Register › Register-TC02: Đăng ký tài khoản với case Invalid: Username bỏ trống 
+  21 passed (37.5s)
