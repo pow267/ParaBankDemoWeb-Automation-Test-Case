@@ -23,7 +23,8 @@ test.describe('Kiểm tra chức năng Register', () => {
     });
 
     test('Register-TC01: Đăng ký tài khoản thành công', async () => {
-        await registerPage.register(RegisterData()[0]);
+        const data = RegisterData()[0];
+        await registerPage.register(data);
         await expect(registerPage.successMessage).toBeVisible();
     });
 
@@ -32,8 +33,10 @@ test.describe('Kiểm tra chức năng Register', () => {
             await registerPage.register(data);
             if (data.allErrors) {
                 await expect(registerPage.errorMessage).toContainText(data.allErrors);
+            } else if (data.expectedError) {
+                await expect(registerPage.errorMessage.filter({ hasText: data.expectedError })).toBeVisible();
             } else {
-                await expect(registerPage.errorMessage).toBeVisible();
+                await expect(registerPage.errorMessage.first()).toBeVisible();
             }
         });
     }
